@@ -9,16 +9,19 @@ using std::endl;
 int main()
 {
     Mapa mapa;
-    Busca_Profundidade buscaProfundidade(10);
-    Busca_Largura buscaLargura(10);
+    Busca_Profundidade buscaProfundidade(50, mapa.Get_Valentina(), mapa.Get_Bessa());
+    Busca_Largura buscaLargura(50, mapa.Get_Valentina(), mapa.Get_Bessa());
 
-    cout << "Buscando com Busca em Profundidade:" << endl;
-    buscaProfundidade.Busca(mapa.Get_Valentina(), mapa.Get_Bessa());
+    cout << endl
+         << "Buscando em Profundidade:" << endl;
+    buscaProfundidade.Busca().Print_Pilha();
 
     mapa.Reset();
 
-    cout << "Buscando com Busca em Largura:" << endl;
-    buscaLargura.Busca(mapa.Get_Valentina(), mapa.Get_Bessa());
+    cout << endl
+         << "Busca em Largura:" << endl;
 
-        return 0;
+    buscaLargura.Busca()->Print_Fila();
+
+    return 0;
 }

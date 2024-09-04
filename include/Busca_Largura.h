@@ -7,11 +7,14 @@
 class Busca_Largura
 {
     Fila fila;
+    Fila f_reserva;
+    Bairro *inicio;
+    Bairro *final;
 
 public:
-    Busca_Largura(int t);
+    Busca_Largura(int t, Bairro *i, Bairro *f);
 
-    void Busca(Bairro *inicio, Bairro *final);
+    Fila *Busca();
 };
 
 #endif

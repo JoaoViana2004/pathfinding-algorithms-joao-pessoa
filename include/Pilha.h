@@ -18,6 +18,7 @@ public:
     Bairro *Get_Topo() const;
     bool Pilha_Cheia() const;
     bool Pilha_Vazia() const;
+    void Print_Pilha() const;
 };
 
 #endif

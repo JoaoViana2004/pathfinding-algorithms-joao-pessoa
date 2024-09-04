@@ -7,11 +7,14 @@
 class Busca_Profundidade
 {
     Pilha pilha;
+    Bairro *inicio;
+    Bairro *final;
+    bool achou;
 
 public:
-    Busca_Profundidade(int tamanho);
+    Busca_Profundidade(int tamanho, Bairro *i, Bairro *f);
 
-    void Busca(Bairro *b, Bairro *final);
+    Pilha Busca();
 };
 
 #endif

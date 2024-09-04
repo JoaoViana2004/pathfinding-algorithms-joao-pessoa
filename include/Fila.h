@@ -19,6 +19,8 @@ public:
     Bairro *Desenfileirar();
     bool Fila_Vazia();
     Bairro *Primeiro_Fila();
+    void Print_Fila();
+    int Get_Tamanho();
 };
 
 #endif

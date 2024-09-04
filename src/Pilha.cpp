@@ -8,12 +8,10 @@ Pilha::Pilha(int t)
     : tamanho(t)
 {
     Bairros.reserve(t);
-    cout << "Nova Pilha Criada com tamanho " << t << endl;
 }
 
 void Pilha::Empilhar(Bairro *b)
 {
-    cout << "Empilhar: " << b->Get_Nome() << endl;
     if (!Pilha_Cheia())
     {
         Bairros.push_back(b);
@@ -21,7 +19,7 @@ void Pilha::Empilhar(Bairro *b)
     }
     else
     {
-        cout << "A pilha já está cheia" << endl;
+        cout << "A pilha ja esta cheia" << endl;
     }
 }
 
@@ -32,10 +30,9 @@ Bairro *Pilha::Desempilhar()
         Bairro *b = Bairros[topo];
         Bairros.pop_back();
         topo--;
-        cout << "Desempilhado: " << b->Get_Nome() << endl;
         return b;
     }
-    cout << "A pilha já está vazia" << endl;
+    cout << "A pilha ja esta vazia" << endl;
     return nullptr;
 }
 
@@ -56,4 +53,13 @@ bool Pilha::Pilha_Cheia() const
 bool Pilha::Pilha_Vazia() const
 {
     return topo == -1;
+}
+
+void Pilha::Print_Pilha() const
+{
+    for (const auto &adj : Bairros)
+    {
+        cout << adj->Get_Nome() << " -> ";
+    }
+    cout << "(Destino) " << Bairros.size() << " Elementos" << endl;
 }

@@ -4,40 +4,44 @@
 using std::cout;
 using std::endl;
 
-Busca_Profundidade::Busca_Profundidade(int tamanho)
-    : pilha(tamanho)
+Busca_Profundidade::Busca_Profundidade(int tamanho, Bairro *i, Bairro *f)
+    : pilha(tamanho), inicio(i), final(f)
 {
+    pilha.Empilhar(inicio);
+    inicio->Visitou();
+    achou = false;
 }
 
-void Busca_Profundidade::Busca(Bairro *b, Bairro *final)
+Pilha Busca_Profundidade::Busca()
 {
-    pilha.Empilhar(b);
-    b->Visitou();
 
-    while (!pilha.Pilha_Vazia())
+    Bairro *topo = pilha.Get_Topo();
+    bool achouAdjacente = false;
+
+    for (const auto &adj : topo->Get_Adjacentes())
     {
-        Bairro *topo = pilha.Get_Topo();
-        bool achouAdjacente = false;
-
-        for (const auto &adj : topo->Get_Adjacentes())
+        if (!adj.Get_Bairro()->Get_Visita() && !achou)
         {
-            if (!adj.Get_Bairro()->Get_Visita())
+            pilha.Empilhar(adj.Get_Bairro());
+            if (adj.Get_Bairro()->Get_Nome() == final->Get_Nome())
             {
-                pilha.Empilhar(adj.Get_Bairro());
-                if (adj.Get_Bairro()->Get_Nome() == final->Get_Nome())
-                {
-                    cout << "Destino Encontrado" << endl;
-                    return;
-                }
+                cout << "Destino Encontrado" << endl;
+                achou = true;
+                achouAdjacente = true;
+                return pilha;
+            }
+            else
+            {
                 adj.Get_Bairro()->Visitou();
                 achouAdjacente = true;
-                break;
             }
         }
-
-        if (!achouAdjacente)
-        {
-            pilha.Desempilhar();
-        }
     }
+
+    if (!achouAdjacente)
+    {
+        pilha.Desempilhar();
+    }
+
+    return Busca();
 }
